@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport"
+			content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<title></title>
+		<link rel="stylesheet" href="./css/index.css" />
+		<link rel="stylesheet" type="text/css" href="./css/vant.css"/>
+		<script type="text/javascript">
+			document.addEventListener('plusready', function() {
+				//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
+
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container" id="app" style="background-image: url(./img/cover.jpg);">
+			<div class="notice">
+				<van-notice-bar left-icon="volume-o" text="消灭星星小游戏，欢迎体验，游戏添加了自动游戏的功能" />
+			</div>
+			<div class="score-target">
+				<p class="score-level">关卡<br /><span id="scoreLevel">{{level}}</span></p>
+				<p>得分<br /><span ref="sourceElement" class="score-current" id="scoreCurrent">{{source}}</span></p>
+				<p>目标<br /><span id="scoreTarget">{{targetSource}}</span></p>
+			</div>
+			<div class="tools">
+				<button @click="computer">自动运行</button>
+				<button @click="stopAutoPlay">停止自动</button>
+			</div>
+			<transition-group name="cell" tag="div" class="star-list">
+				<div v-for="item in pageLayout" :key="item" class="star" :title="item.id"
+					:style="{backgroundImage: 'url('+item.imgPath+')', left:item.x*0.75+'rem',bottom:item.y*0.75+'rem' }"
+					@click="startClick(item)"></div>
+			</transition-group>
+		</div>
+		<script src="./plugin/vue.js"></script>
+		<script src="./plugin/vant.js"></script>
+		<script src="./plugin/countUp.js"></script>
+		<script src="./js/resize.js"></script>
+		<script src="./js/index.js"></script>
+	</body>
+</html>
